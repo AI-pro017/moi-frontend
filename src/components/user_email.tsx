@@ -3,6 +3,7 @@ import { isAlpha, isEmpty } from "validator";
 import isEmail from "validator/lib/isEmail";
 import useRequestContext from "@/hooks/use_request_context";
 import Image from "next/image";
+import API_URL from "@/utils/api_url";
 
 interface UserEmailProps {
     setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -65,7 +66,7 @@ const UserEmail = ({ setStep }: UserEmailProps) => {
         
         // save user name and email to db
         try {
-            await fetch("https://moi-backend-rzqr.onrender.com/user", {
+            await fetch(`${API_URL}/user`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

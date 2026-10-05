@@ -28,7 +28,11 @@ npm run dev
 
 Open http://localhost:3000.
 
-The backend address is currently hardcoded to the deployed Render service in `src/app/page.tsx` (the `/generate` stream) and `src/components/user_email.tsx` (the `/user` sign up). Change both if you want to run against a local copy of the backend.
+By default the app talks to the deployed backend on Render. To use a local copy of the backend instead, create a `.env.local` file:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3001
+```
 
 ## Project structure
 

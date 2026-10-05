@@ -8,6 +8,7 @@ import Waiting from "../components/waiting";
 import GeneratedNames from "../components/generated_names";
 import useRequestContext from "../hooks/use_request_context";
 import ServerHomeLayout from "../components/server_home_layout"; // Import server component
+import API_URL from "../utils/api_url";
 
 const HomePage = () => {
   const [step, setStep] = useState<number>(0);
@@ -24,7 +25,7 @@ const HomePage = () => {
     if (!loading && streamedData.length < 1) return;
 
     const queryParams = new URLSearchParams(formData as unknown as Record<string, string>).toString();
-    const eventSource = new EventSource(`https://moi-backend-rzqr.onrender.com/generate?${queryParams}`);
+    const eventSource = new EventSource(`${API_URL}/generate?${queryParams}`);
 
     setIsComplete("start");
 
