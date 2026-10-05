@@ -7,7 +7,7 @@ The names come from [moi-backend](https://github.com/AI-pro017/moi-backend), whi
 ## How it works
 
 1. You pick the baby's gender, a preferred name origin (anything from Irish or Japanese to Elvish or Hogwarts), a theme or meaning, popular or unique, any names to skip, and whether you'd like a name with a nickname.
-2. If you add a due date, the app works out the baby's star sign and includes it in the request. You can tick "I'm not pregnant yet" to skip this.
+2. If you add a due date, the app works out the baby's star sign and shows it with the results. You can tick "I'm not pregnant yet" to skip this.
 3. While the names load, there's an optional sign up for the Mother of Invention mailing list. It only shows once per browser.
 4. Names stream in live from the backend using server sent events, with the zodiac sign shown at the top.
 
