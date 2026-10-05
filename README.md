@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mother of Invention Baby Name Generator (Frontend)
 
-## Getting Started
+An AI baby name generator built for Mother of Invention. Parents answer a few quick questions and get a list of name ideas that fit what they're looking for, with the names appearing on screen as they're generated.
 
-First, run the development server:
+The names come from [moi-backend](https://github.com/AI-pro017/moi-backend), which runs the AI side.
+
+## How it works
+
+1. You pick the baby's gender, a preferred name origin (anything from Irish or Japanese to Elvish or Hogwarts), a theme or meaning, popular or unique, any names to skip, and whether you'd like a name with a nickname.
+2. If you add a due date, the app works out the baby's star sign and includes it in the request. You can tick "I'm not pregnant yet" to skip this.
+3. While the names load, there's an optional sign up for the Mother of Invention mailing list. It only shows once per browser.
+4. Names stream in live from the backend using server sent events, with the zodiac sign shown at the top.
+
+## Tech stack
+
+- Next.js 15 (App Router), React 19 and TypeScript
+- Tailwind CSS with custom Futura and Copper fonts
+- validator for the email form
+
+## Running it locally
 
 ```bash
+git clone https://github.com/AI-pro017/moi-frontend.git
+cd moi-frontend
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The backend address is currently hardcoded to the deployed Render service in `src/app/page.tsx` (the `/generate` stream) and `src/components/user_email.tsx` (the `/user` sign up). Change both if you want to run against a local copy of the backend.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  app/              Layout, SEO metadata and the main page
+  components/
+    user_form.tsx         The questionnaire
+    user_email.tsx        Newsletter sign up
+    waiting.tsx           Loading screen with the zodiac sign
+    generated_names.tsx   Streamed results
+  context/          Shared form state and streamed results
+  utils/            Zodiac sign lookup from the due date
+public/             Logos, images and fonts
+```
